@@ -1,0 +1,428 @@
+﻿@model PowerFest.viewModelCadastro
+
+@{
+    ViewBag.Title = "Cadastro Usuário";
+}
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<h2>Cadastro Usuário</h2>
+
+<div class="container">
+    <div class="row">
+        <section>
+            <div class="wizard" id="divWizard">
+
+                <ul class="nav nav-wizard" id="idStep">
+                    <li class="active">
+                        <a href="#step1" data-toggle="tab">Usuário</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="#step2" data-toggle="tab">Contato</a>
+                    </li>       
+                    <li class="disabled">
+                        <a href="#step4" data-toggle="tab">Corfimar Dados</a>
+                    </li>
+                </ul>
+                @using (Html.BeginForm())
+                {
+                    <div class="tab-content">
+                        @Html.AntiForgeryToken()
+                        <div class="tab-pane active" id="step1">
+                            <div class="form-horizontal">
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Usuario.login,"Login", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Usuario.login, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.login, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Usuario.senha,"Senha", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Usuario.senha, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.senha, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Usuario.email,"E-mail", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Usuario.email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Usuario.id_perfil, "Perfil", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.dropPerfil, (IEnumerable<SelectListItem>)ViewBag.dropPerfil , new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.id_perfil, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">                                  
+                                        <button type="button" class="btn btn-primary">Continuar <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane " id="step2">
+
+                            <div class="form-horizontal">
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.contato.nome,"Nome", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.contato.nome, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.contato.nome, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>                           
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.contato.dt_nascimento, "Data de Nascimento", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.contato.dt_nascimento, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.contato.dt_nascimento, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.contato.telefone1, "Telefone 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.contato.telefone1, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.contato.telefone1, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.contato.telefone2, "Telefone 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.contato.telefone2, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.contato.telefone2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn btn-primary">Finalizar  <span class="glyphicon glyphicon-ok"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane " id="step3">
+                            <div class="form-horizontal">
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.cnpj, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.cnpj, "CNPJ", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.razao_social, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.razao_social, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.razao_social, "Razão Social", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.logradouro, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.logradouro, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.logradouro, "Logradouro", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.pais, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.pais, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.pais, "Pais", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.estado, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.estado, "Estado", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.cidade, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.cidade, "Cidade", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.email, "E-mail", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.telefone1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.telefone1, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.telefone1, "Telefone 1", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.empresa.telefone2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.empresa.telefone2, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.empresa.telefone2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">                                        
+                                        <button type="button" class="btn btn-primary">Continuar <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="step4">
+                            <h3>Complete</h3>
+                            <p>You have successfully completed all steps.</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+
+            </div>
+        </section>
+    </div>
+</div>
+  
+    @section Scripts {
+                         @Scripts.Render("~/bundles/jqueryval")
+                        }
+
+                        <script type="text/javascript">
+                            
+                            $(document).ready(function () {
+
+                                var liEmpresa = ` 
+                                            <li class="active">
+                                                <a href="#step1" data-toggle="tab">Usuário</a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#step2" data-toggle="tab">Contato</a>
+                                            </li>
+                                            <li class="disabled" >
+                                                <a href="#step3" data-toggle="tab" >Empresa</a>
+                                            </li>                    
+                                            <li class="disabled">
+                                                <a href="#step4" data-toggle="tab">Corfimar Dados</a>
+                                            </li>`;
+
+
+                                var li = ` <li class="active">
+                                                <a href="#step1" data-toggle="tab">Usuário</a>
+                                            </li>
+                                            <li class="disabled">
+                                                <a href="#step2" data-toggle="tab">Contato</a>
+                                            </li>           
+                                            <li class="disabled">
+                                                <a href="#step4" data-toggle="tab">Corfimar Dados</a>
+                                            </li>`;
+
+                                $("#id_perfil").change(function () {
+                                    if ($("#id_perfil").val() == 2) {
+                                        $("#stepEmpresa").show();
+                                        $("#stepEmpresaTab").attr('data-toggle', 'tab');
+                                        $("#idStep").empty();
+                                        $("#idStep").append(liEmpresa);
+                                    } else {
+                                        $("#stepEmpresa").hide();
+                                        $("#stepEmpresaTab").removeAttr('data-toggle');
+                                        $("#idStep").empty();
+                                        $("#idStep").append(li);
+                                    }
+                                });
+                               
+
+                                //Wizard
+                                $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                                    var $target = $(e.target);
+
+                                    if ($target.parent().hasClass('disabled')) {
+                                        return false;
+                                    }
+                                });
+
+                                $(".btn-primary").click(function (e) {
+
+                                    var $active = $('.wizard .nav-wizard li.active');                               
+                                    $active.next().removeClass('disabled');
+                                                                                                        
+                                    nextTab($active);
+
+                                });
+
+                                
+                            });
+
+                            function nextTab(elem) {
+                                $(elem).next().find('a[data-toggle="tab"]').click();                           
+                            } 
+                                                    
+                        </script>
+            <style>
+                body {
+                    margin: 20px auto;
+                }
+
+                ul.nav-wizard {
+                    background-color: #f1f1f1;
+                    border: 1px solid #d4d4d4;
+                    -webkit-border-radius: 6px;
+                    -moz-border-radius: 6px;
+                    border-radius: 3px;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                    ul.nav-wizard:before {
+                        position: absolute;
+                    }
+
+                    ul.nav-wizard:after {
+                        display: block;
+                        position: absolute;
+                        left: 0px;
+                        right: 0px;
+                        top: 138px;
+                        height: 47px;
+                        border-top: 1px solid #d4d4d4;
+                        border-bottom: 1px solid #d4d4d4;
+                        z-index: 11;
+                        content: " ";
+                    }
+
+                    ul.nav-wizard li {
+                        position: relative;
+                        float: left;
+                        height: 46px;
+                        display: inline-block;
+                        text-align: center;
+                        padding: 0 20px 0 30px;
+                        margin: 0;
+                        font-size: 16px;
+                        line-height: 46px;
+                    }
+
+                        ul.nav-wizard li a {
+                            color: #428bca;
+                            padding: 0;
+                        }
+
+                            ul.nav-wizard li a:hover {
+                                background-color: transparent;
+                            }
+
+                        ul.nav-wizard li:before {
+                            position: absolute;
+                            display: block;
+                            border: 24px solid transparent;
+                            border-left: 16px solid #d4d4d4;
+                            border-right: 0;
+                            top: -1px;
+                            z-index: 10;
+                            content: '';
+                            right: -16px;
+                        }
+
+                        ul.nav-wizard li:after {
+                            position: absolute;
+                            display: block;
+                            border: 24px solid transparent;
+                            border-left: 16px solid #f1f1f1;
+                            border-right: 0;
+                            top: -1px;
+                            z-index: 10;
+                            content: '';
+                            right: -15px;
+                        }
+
+                        ul.nav-wizard li.active {
+                            color: #3a87ad;
+                            background: #dedede;
+                        }
+
+                            ul.nav-wizard li.active:after {
+                                border-left: 16px solid #dedede;
+                            }
+
+                            ul.nav-wizard li.active a,
+                            ul.nav-wizard li.active a:active,
+                            ul.nav-wizard li.active a:visited,
+                            ul.nav-wizard li.active a:focus {
+                                color: #989898;
+                                background: #dedede;
+                            }
+
+                    ul.nav-wizard .active ~ li {
+                        color: #999999;
+                        background: #f9f9f9;
+                    }
+
+                        ul.nav-wizard .active ~ li:after {
+                            border-left: 16px solid #f9f9f9;
+                        }
+
+                        ul.nav-wizard .active ~ li a,
+                        ul.nav-wizard .active ~ li a:active,
+                        ul.nav-wizard .active ~ li a:visited,
+                        ul.nav-wizard .active ~ li a:focus {
+                            color: #999999;
+                            background: #f9f9f9;
+                        }
+
+                    ul.nav-wizard.nav-wizard-backnav li:hover {
+                        color: #468847;
+                        background: #f6fbfd;
+                    }
+
+                        ul.nav-wizard.nav-wizard-backnav li:hover:after {
+                            border-left: 16px solid #f6fbfd;
+                        }
+
+                        ul.nav-wizard.nav-wizard-backnav li:hover a,
+                        ul.nav-wizard.nav-wizard-backnav li:hover a:active,
+                        ul.nav-wizard.nav-wizard-backnav li:hover a:visited,
+                        ul.nav-wizard.nav-wizard-backnav li:hover a:focus {
+                            color: #468847;
+                            background: #f6fbfd;
+                        }
+
+                    ul.nav-wizard.nav-wizard-backnav .active ~ li {
+                        color: #999999;
+                        background: #ededed;
+                    }
+
+                        ul.nav-wizard.nav-wizard-backnav .active ~ li:after {
+                            border-left: 16px solid #ededed;
+                        }
+
+                        ul.nav-wizard.nav-wizard-backnav .active ~ li a,
+                        ul.nav-wizard.nav-wizard-backnav .active ~ li a:active,
+                        ul.nav-wizard.nav-wizard-backnav .active ~ li a:visited,
+                        ul.nav-wizard.nav-wizard-backnav .active ~ li a:focus {
+                            color: #999999;
+                            background: #ededed;
+                        }
+            </style>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="powerFestFinalModelStoreContainer" CdmEntityContainer="powerFestFinalEntities">
+    <EntitySetMapping Name="arquivos">
+      <EntityTypeMapping TypeName="powerFestFinalModel.arquivos">
+        <MappingFragment StoreEntitySet="arquivos">
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="caminho" ColumnName="caminho" />
+          <ScalarProperty Name="id_arquivo" ColumnName="id_arquivo" />
+          <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="avaliacao">
+      <EntityTypeMapping TypeName="powerFestFinalModel.avaliacao">
+        <MappingFragment StoreEntitySet="avaliacao">
+          <ScalarProperty Name="tp_avaliacao" ColumnName="tp_avaliacao" />
+          <ScalarProperty Name="titulo_avaliacao" ColumnName="titulo_avaliacao" />
+          <ScalarProperty Name="opiniao" ColumnName="opiniao" />
+          <ScalarProperty Name="recomendado" ColumnName="recomendado" />
+          <ScalarProperty Name="data_avaliacao" ColumnName="data_avaliacao" />
+          <ScalarProperty Name="id_avaliacao" ColumnName="id_avaliacao" />
+          <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categoria">
+      <EntityTypeMapping TypeName="powerFestFinalModel.categoria">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contato">
+      <EntityTypeMapping TypeName="powerFestFinalModel.contato">
+        <MappingFragment StoreEntitySet="contato">
+          <ScalarProperty Name="id_contato" ColumnName="id_contato" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="dt_nascimento" ColumnName="dt_nascimento" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="telefone1" ColumnName="telefone1" />
+          <ScalarProperty Name="telefone2" ColumnName="telefone2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa">
+      <EntityTypeMapping TypeName="powerFestFinalModel.Empresa">
+        <MappingFragment StoreEntitySet="Empresa">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="razao_social" ColumnName="razao_social" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id_contato" ColumnName="id_contato" />
+          <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+          <ScalarProperty Name="telefone2" ColumnName="telefone2" />
+          <ScalarProperty Name="telefone1" ColumnName="telefone1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perfil">
+      <EntityTypeMapping TypeName="powerFestFinalModel.Perfil">
+        <MappingFragment StoreEntitySet="Perfil">
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Servico">
+      <EntityTypeMapping TypeName="powerFestFinalModel.Servico">
+        <MappingFragment StoreEntitySet="Servico">
+          <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="classificacao" ColumnName="classificacao" />
+          <ScalarProperty Name="site" ColumnName="site" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="powerFestFinalModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="dt_cadastro" ColumnName="dt_cadastro" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

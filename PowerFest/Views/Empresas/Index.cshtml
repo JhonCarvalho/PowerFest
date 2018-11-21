@@ -1,0 +1,93 @@
+﻿@model IEnumerable<PowerFest.Empresa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.logradouro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.razao_social)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefone2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefone1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contato.cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servico.nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.logradouro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.razao_social)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefone2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefone1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contato.cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servico.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.cnpj }) |
+            @Html.ActionLink("Details", "Details", new { id=item.cnpj }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.cnpj })
+        </td>
+    </tr>
+}
+
+</table>

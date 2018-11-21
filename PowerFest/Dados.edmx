@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="powerFestFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="arquivos">
+          <Key>
+            <PropertyRef Name="id_arquivo" />
+          </Key>
+          <Property Name="tipo" Type="varchar" MaxLength="500" />
+          <Property Name="caminho" Type="varchar" MaxLength="500" />
+          <Property Name="id_arquivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_servico" Type="int" />
+        </EntityType>
+        <EntityType Name="avaliacao">
+          <Key>
+            <PropertyRef Name="id_avaliacao" />
+          </Key>
+          <Property Name="tp_avaliacao" Type="varchar" MaxLength="200" />
+          <Property Name="titulo_avaliacao" Type="varchar" MaxLength="200" />
+          <Property Name="opiniao" Type="varchar" MaxLength="200" />
+          <Property Name="recomendado" Type="varchar" MaxLength="200" />
+          <Property Name="data_avaliacao" Type="date" />
+          <Property Name="id_avaliacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_servico" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="id_categoria" />
+          </Key>
+          <Property Name="tipo" Type="varchar" MaxLength="200" />
+          <Property Name="id_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contato">
+          <Key>
+            <PropertyRef Name="id_contato" />
+          </Key>
+          <Property Name="id_contato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="200" />
+          <Property Name="nome" Type="varchar" MaxLength="200" />
+          <Property Name="dt_nascimento" Type="date" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="telefone1" Type="varchar" MaxLength="200" />
+          <Property Name="telefone2" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="id_empresa" />
+          </Key>
+          <Property Name="id_empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cnpj" Type="varchar" MaxLength="200" />
+          <Property Name="logradouro" Type="varchar" MaxLength="200" />
+          <Property Name="pais" Type="varchar" MaxLength="200" />
+          <Property Name="razao_social" Type="varchar" MaxLength="200" />
+          <Property Name="cidade" Type="varchar" MaxLength="200" />
+          <Property Name="estado" Type="varchar" MaxLength="200" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="id_contato" Type="int" />
+          <Property Name="id_servico" Type="int" />
+          <Property Name="telefone2" Type="varchar" MaxLength="200" />
+          <Property Name="telefone1" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id_perfil" />
+          </Key>
+          <Property Name="id_perfil" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="id_servico" />
+          </Key>
+          <Property Name="id_servico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" />
+          <Property Name="classificacao" Type="int" />
+          <Property Name="site" Type="varchar" MaxLength="200" />
+          <Property Name="descricao" Type="varchar" MaxLength="200" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'powerFestFinal.dbo.servico_categoria' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="servico_categoria">
+          <Property Name="id_servico" Type="int" />
+          <Property Name="id_categoria" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="dt_cadastro" Type="date" />
+          <Property Name="login" Type="varchar" MaxLength="200" />
+          <Property Name="senha" Type="varchar" MaxLength="200" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_perfil" Type="int" />
+        </EntityType>
+        <Association Name="FK__arquivos__id_ser__37A5467C">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="0..1" />
+          <End Role="arquivos" Type="Self.arquivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="id_servico" />
+            </Principal>
+            <Dependent Role="arquivos">
+              <PropertyRef Name="id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__avaliacao__id_se__35BCFE0A">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="0..1" />
+          <End Role="avaliacao" Type="Self.avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="id_servico" />
+            </Principal>
+            <Dependent Role="avaliacao">
+              <PropertyRef Name="id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__avaliacao__id_us__36B12243">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="avaliacao" Type="Self.avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="avaliacao">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contato__id_usua__398D8EEE">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="contato" Type="Self.contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="contato">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresa__id_cont__38996AB5">
+          <End Role="contato" Type="Self.contato" Multiplicity="0..1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contato">
+              <PropertyRef Name="id_contato" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="id_contato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresa__id_serv__29572725">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="0..1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="id_servico" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'powerFestFinal.dbo.servico_categoria' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__servico_c__id_ca__32E0915F" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'powerFestFinal.dbo.servico_categoria' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__servico_c__id_se__31EC6D26" />-->
+        <Association Name="FK__Usuario__id_perf__300424B4">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id_perfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="powerFestFinalModelStoreContainer">
+          <EntitySet Name="arquivos" EntityType="Self.arquivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="avaliacao" EntityType="Self.avaliacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contato" EntityType="Self.contato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__arquivos__id_ser__37A5467C" Association="Self.FK__arquivos__id_ser__37A5467C">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="arquivos" EntitySet="arquivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__avaliacao__id_se__35BCFE0A" Association="Self.FK__avaliacao__id_se__35BCFE0A">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="avaliacao" EntitySet="avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK__avaliacao__id_us__36B12243" Association="Self.FK__avaliacao__id_us__36B12243">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="avaliacao" EntitySet="avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contato__id_usua__398D8EEE" Association="Self.FK__contato__id_usua__398D8EEE">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="contato" EntitySet="contato" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresa__id_cont__38996AB5" Association="Self.FK__Empresa__id_cont__38996AB5">
+            <End Role="contato" EntitySet="contato" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresa__id_serv__29572725" Association="Self.FK__Empresa__id_serv__29572725">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__id_perf__300424B4" Association="Self.FK__Usuario__id_perf__300424B4">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="powerFestFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="arquivos">
+          <Key>
+            <PropertyRef Name="id_arquivo" />
+          </Key>
+          <Property Name="tipo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="caminho" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="id_arquivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_servico" Type="Int32" />
+          <NavigationProperty Name="Servico" Relationship="Self.FK__arquivos__id_ser__37A5467C" FromRole="arquivos" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="avaliacao">
+          <Key>
+            <PropertyRef Name="id_avaliacao" />
+          </Key>
+          <Property Name="tp_avaliacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="titulo_avaliacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="opiniao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="recomendado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="data_avaliacao" Type="DateTime" Precision="0" />
+          <Property Name="id_avaliacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_servico" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="Servico" Relationship="Self.FK__avaliacao__id_se__35BCFE0A" FromRole="avaliacao" ToRole="Servico" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__avaliacao__id_us__36B12243" FromRole="avaliacao" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="id_categoria" />
+          </Key>
+          <Property Name="tipo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="contato">
+          <Key>
+            <PropertyRef Name="id_contato" />
+          </Key>
+          <Property Name="id_contato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cidade" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dt_nascimento" Type="DateTime" Precision="0" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="telefone1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefone2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__contato__id_usua__398D8EEE" FromRole="contato" ToRole="Usuario" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK__Empresa__id_cont__38996AB5" FromRole="contato" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="id_empresa" />
+          </Key>
+          <Property Name="id_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cnpj" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="logradouro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pais" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="razao_social" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cidade" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_contato" Type="Int32" />
+          <Property Name="id_servico" Type="Int32" />
+          <Property Name="telefone2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefone1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contato" Relationship="Self.FK__Empresa__id_cont__38996AB5" FromRole="Empresa" ToRole="contato" />
+          <NavigationProperty Name="Servico" Relationship="Self.FK__Empresa__id_serv__29572725" FromRole="Empresa" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id_perfil" />
+          </Key>
+          <Property Name="id_perfil" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__id_perf__300424B4" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="id_servico" />
+          </Key>
+          <Property Name="id_servico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="classificacao" Type="Int32" />
+          <Property Name="site" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="descricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="arquivos" Relationship="Self.FK__arquivos__id_ser__37A5467C" FromRole="Servico" ToRole="arquivos" />
+          <NavigationProperty Name="avaliacao" Relationship="Self.FK__avaliacao__id_se__35BCFE0A" FromRole="Servico" ToRole="avaliacao" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK__Empresa__id_serv__29572725" FromRole="Servico" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="dt_cadastro" Type="DateTime" Precision="0" />
+          <Property Name="login" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="senha" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_perfil" Type="Int32" />
+          <NavigationProperty Name="avaliacao" Relationship="Self.FK__avaliacao__id_us__36B12243" FromRole="Usuario" ToRole="avaliacao" />
+          <NavigationProperty Name="contato" Relationship="Self.FK__contato__id_usua__398D8EEE" FromRole="Usuario" ToRole="contato" />
+          <NavigationProperty Name="Perfil" Relationship="Self.FK__Usuario__id_perf__300424B4" FromRole="Usuario" ToRole="Perfil" />
+        </EntityType>
+        <Association Name="FK__arquivos__id_ser__37A5467C">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="0..1" />
+          <End Role="arquivos" Type="Self.arquivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="id_servico" />
+            </Principal>
+            <Dependent Role="arquivos">
+              <PropertyRef Name="id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__avaliacao__id_se__35BCFE0A">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="0..1" />
+          <End Role="avaliacao" Type="Self.avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="id_servico" />
+            </Principal>
+            <Dependent Role="avaliacao">
+              <PropertyRef Name="id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__avaliacao__id_us__36B12243">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="avaliacao" Type="Self.avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="avaliacao">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contato__id_usua__398D8EEE">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="contato" Type="Self.contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="contato">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresa__id_cont__38996AB5">
+          <End Role="contato" Type="Self.contato" Multiplicity="0..1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contato">
+              <PropertyRef Name="id_contato" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="id_contato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresa__id_serv__29572725">
+          <End Role="Servico" Type="Self.Servico" Multiplicity="0..1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servico">
+              <PropertyRef Name="id_servico" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="id_servico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__id_perf__300424B4">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id_perfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="powerFestFinalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="arquivos" EntityType="Self.arquivos" />
+          <EntitySet Name="avaliacao" EntityType="Self.avaliacao" />
+          <EntitySet Name="categoria" EntityType="Self.categoria" />
+          <EntitySet Name="contato" EntityType="Self.contato" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__arquivos__id_ser__37A5467C" Association="Self.FK__arquivos__id_ser__37A5467C">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="arquivos" EntitySet="arquivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__avaliacao__id_se__35BCFE0A" Association="Self.FK__avaliacao__id_se__35BCFE0A">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="avaliacao" EntitySet="avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK__avaliacao__id_us__36B12243" Association="Self.FK__avaliacao__id_us__36B12243">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="avaliacao" EntitySet="avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contato__id_usua__398D8EEE" Association="Self.FK__contato__id_usua__398D8EEE">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="contato" EntitySet="contato" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresa__id_cont__38996AB5" Association="Self.FK__Empresa__id_cont__38996AB5">
+            <End Role="contato" EntitySet="contato" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresa__id_serv__29572725" Association="Self.FK__Empresa__id_serv__29572725">
+            <End Role="Servico" EntitySet="Servico" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__id_perf__300424B4" Association="Self.FK__Usuario__id_perf__300424B4">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="powerFestFinalModelStoreContainer" CdmEntityContainer="powerFestFinalEntities">
+          <EntitySetMapping Name="arquivos">
+            <EntityTypeMapping TypeName="powerFestFinalModel.arquivos">
+              <MappingFragment StoreEntitySet="arquivos">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="caminho" ColumnName="caminho" />
+                <ScalarProperty Name="id_arquivo" ColumnName="id_arquivo" />
+                <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="avaliacao">
+            <EntityTypeMapping TypeName="powerFestFinalModel.avaliacao">
+              <MappingFragment StoreEntitySet="avaliacao">
+                <ScalarProperty Name="tp_avaliacao" ColumnName="tp_avaliacao" />
+                <ScalarProperty Name="titulo_avaliacao" ColumnName="titulo_avaliacao" />
+                <ScalarProperty Name="opiniao" ColumnName="opiniao" />
+                <ScalarProperty Name="recomendado" ColumnName="recomendado" />
+                <ScalarProperty Name="data_avaliacao" ColumnName="data_avaliacao" />
+                <ScalarProperty Name="id_avaliacao" ColumnName="id_avaliacao" />
+                <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categoria">
+            <EntityTypeMapping TypeName="powerFestFinalModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contato">
+            <EntityTypeMapping TypeName="powerFestFinalModel.contato">
+              <MappingFragment StoreEntitySet="contato">
+                <ScalarProperty Name="id_contato" ColumnName="id_contato" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="dt_nascimento" ColumnName="dt_nascimento" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="telefone1" ColumnName="telefone1" />
+                <ScalarProperty Name="telefone2" ColumnName="telefone2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="powerFestFinalModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="razao_social" ColumnName="razao_social" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_contato" ColumnName="id_contato" />
+                <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+                <ScalarProperty Name="telefone2" ColumnName="telefone2" />
+                <ScalarProperty Name="telefone1" ColumnName="telefone1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="powerFestFinalModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servico">
+            <EntityTypeMapping TypeName="powerFestFinalModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="id_servico" ColumnName="id_servico" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="classificacao" ColumnName="classificacao" />
+                <ScalarProperty Name="site" ColumnName="site" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="powerFestFinalModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="dt_cadastro" ColumnName="dt_cadastro" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

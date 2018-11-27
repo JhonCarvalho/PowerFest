@@ -22,3 +22,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.form-login {
+    max-width: 450px;
+    max-height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10%;
+    
+}
+    .form-login input {
+        margin-bottom: 10px;
+    }

@@ -1,99 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PowerFest.Controllers
 {
-    public class CadastroGeralController : Controller
+    public class ServicoGeralController : Controller
     {
         private powerFestFinalEntities db = new powerFestFinalEntities();
-
-        // GET: CadastroGeral
+        // GET: ServicoGeral
         public ActionResult Index()
         {
-          
             return View();
         }
 
-        // GET: CadastroGeral/Details/5
+        // GET: ServicoGeral/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CadastroGeral/Create
+        // GET: ServicoGeral/Create
         public ActionResult Create()
         {
-            viewModelCadastro viewModelCadastro = new viewModelCadastro();
-            var perfil = db.Perfil.ToList();
+            viewModelServico viewModelServico = new viewModelServico();           
+            var categoria = db.categoria.ToList();
             List<SelectListItem> list = new List<SelectListItem>();
-            foreach (var p in perfil)
+            foreach (var c in categoria)
             {
 
                 list.Add(new SelectListItem
                 {
-                    Text = p.tipo,
-                    Value = p.id_perfil.ToString()
+                    Text = c.tipo,
+                    Value = c.id_categoria.ToString()
 
                 });
 
             }
-            ViewBag.dropPerfil = list;
+            ViewBag.dropCategoria = list;
             return View();
+           
         }
 
-        // POST: CadastroGeral/Create
+        // POST: ServicoGeral/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(viewModelCadastro viewModelCadastro)
+        public ActionResult Create(viewModelServico viewModelServico)
         {
-            
             try
             {
+                var images = viewModelServico.images;
 
-                //Usuario;
-                Usuario usuario = viewModelCadastro.Usuario;
-                usuario.dt_cadastro = DateTime.Now;
-                usuario.id_perfil = viewModelCadastro.id_perfil;
-                db.Usuario.Add(usuario);
-                db.SaveChanges();
-                int id_usuario = usuario.id_usuario;
-
-                //Contato
-                contato contato = viewModelCadastro.contato;
-                contato.id_usuario = id_usuario;
-                db.contato.Add(contato);
-                db.SaveChanges();
-                int id_contato = contato.id_contato;
-
-                if (viewModelCadastro.id_perfil == 2)
+                if (images.Length > 0)
                 {
-                    //Empresa
-                    Empresa empresa = viewModelCadastro.empresa;
-                    empresa.id_contato = id_contato;
-                    db.Empresa.Add(empresa);
-                    db.SaveChanges();
+                    foreach (HttpPostedFileBase img in images) {
+                        string ImageFile = Path.GetFileName(img.FileName);
+                        string folder = Path.Combine(Server.MapPath("~/UploadImages"), ImageFile);
+                        img.SaveAs(folder);
+                    }
+
                 }
 
                 // TODO: Add insert logic here
+
                 return RedirectToAction("Index");
             }
             catch
             {
-                ViewBag.id_perfil = new SelectList(db.Perfil, "id_perfil", "tipo");
                 return View();
             }
         }
 
-        // GET: CadastroGeral/Edit/5
+        // GET: ServicoGeral/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CadastroGeral/Edit/5
+        // POST: ServicoGeral/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -109,13 +94,13 @@ namespace PowerFest.Controllers
             }
         }
 
-        // GET: CadastroGeral/Delete/5
+        // GET: ServicoGeral/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CadastroGeral/Delete/5
+        // POST: ServicoGeral/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

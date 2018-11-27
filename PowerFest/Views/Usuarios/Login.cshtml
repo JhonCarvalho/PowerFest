@@ -1,0 +1,60 @@
+﻿@model PowerFest.Usuario
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="form-login">
+            <div class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Login Power Fest</div>
+                    </div>
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div style="padding-top:30px" class="panel-body">
+                        <div style="display:none" id="result" class="alert alert-danger col-sm-12">
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.login, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-lock"></i>
+                                    @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top:10px">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Entrar" class="btn btn-default" />                               
+                                    @Html.ActionLink("Cadastra-se já !", "Index")                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        }
+
+       

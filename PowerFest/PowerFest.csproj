@@ -162,11 +162,14 @@
     <Compile Include="contato.cs">
       <DependentUpon>Dados.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\arquivosController.cs" />
     <Compile Include="Controllers\CadastroGeralController.cs" />
+    <Compile Include="Controllers\categoriasController.cs" />
     <Compile Include="Controllers\contatoesController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilsController.cs" />
+    <Compile Include="Controllers\ServicoGeralController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Dados.Context.cs">
       <AutoGen>True</AutoGen>
@@ -191,6 +194,7 @@
     </Compile>
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\viewModelCadastro.cs" />
+    <Compile Include="Models\viewModelServico.cs" />
     <Compile Include="Perfil.cs">
       <DependentUpon>Dados.tt</DependentUpon>
     </Compile>
@@ -278,9 +282,22 @@
     <Content Include="Views\CadastroGeral\Create.cshtml" />
     <Content Include="Views\CadastroGeral\Index.cshtml" />
     <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Login.cshtml" />
+    <Content Include="Views\ServicoGeral\Create.cshtml" />
+    <Content Include="Views\categorias\Create.cshtml" />
+    <Content Include="Views\categorias\Delete.cshtml" />
+    <Content Include="Views\categorias\Details.cshtml" />
+    <Content Include="Views\categorias\Edit.cshtml" />
+    <Content Include="Views\categorias\Index.cshtml" />
+    <Content Include="Views\arquivos\Create.cshtml" />
+    <Content Include="Views\arquivos\Delete.cshtml" />
+    <Content Include="Views\arquivos\Details.cshtml" />
+    <Content Include="Views\arquivos\Edit.cshtml" />
+    <Content Include="Views\arquivos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

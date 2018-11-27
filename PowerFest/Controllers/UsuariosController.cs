@@ -39,7 +39,7 @@ namespace PowerFest.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            ViewBag.id_perfil = new SelectList(db.Perfil, "id_perfil", "tipo");   
+            ViewBag.id_perfil = new SelectList(db.Perfil, "id_perfil", "tipo");
             return View();
         }
 
@@ -53,8 +53,8 @@ namespace PowerFest.Controllers
             if (ModelState.IsValid)
             {
 
-                 db.Usuario.Add(usuario);
-                 db.SaveChanges();
+                db.Usuario.Add(usuario);
+                db.SaveChanges();
                 //return RedirectToRoute(new { controller = "contatoes", action = "Create", usuario = usuario });
                 return RedirectToAction("Index");
             }
@@ -63,7 +63,7 @@ namespace PowerFest.Controllers
             return View(usuario);
         }
 
-       
+
 
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
@@ -122,6 +122,43 @@ namespace PowerFest.Controllers
             db.Usuario.Remove(usuario);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Usuarios/Delete/5
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("Login")]
+        [ValidateAntiForgeryToken]
+        public ActionResult LoginValidar(Usuario usuario)
+        {
+            var vUsuario = db.Usuario.Where(p => p.login.Equals(usuario.login)).FirstOrDefault();
+            if (vUsuario != null)
+            {
+                if (Equals(vUsuario.senha, usuario.senha))
+                {
+                    Session["login"] = vUsuario.login;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    /*Escreve na tela a mensagem de erro informada*/
+                    ModelState.AddModelError("", "Senha informada inválida!!!");
+                    /*Retorna a tela de login*/
+                    return View(new Usuario());
+                }
+            }
+            else
+            {
+                /*Escreve na tela a mensagem de erro informada*/
+                ModelState.AddModelError("", "Login informado inválido!!!");
+                /*Retorna a tela de login*/
+                return View(new Usuario());
+            }
+            
+            return View();
         }
 
         protected override void Dispose(bool disposing)

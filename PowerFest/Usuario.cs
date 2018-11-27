@@ -11,7 +11,8 @@ namespace PowerFest
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,9 @@ namespace PowerFest
         }
     
         public Nullable<System.DateTime> dt_cadastro { get; set; }
+        [DisplayName("Login")]
         public string login { get; set; }
+        [DisplayName("Senha")]
         public string senha { get; set; }
         public string email { get; set; }
         public int id_usuario { get; set; }

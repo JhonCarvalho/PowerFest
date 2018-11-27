@@ -1,0 +1,30 @@
+﻿@model PowerFest.arquivos
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "arquivos", FormMethod.Post, new{enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.TextBox("UploadImage","",new { type="file"})
+        <input type="submit" value="Upload" />
+
+        @{
+            if(ViewBag.Message != null)
+            {
+                @ViewBag.Message
+            }
+         }
+        
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

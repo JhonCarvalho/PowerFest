@@ -22,13 +22,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.perfil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Perfil1.tipo)
-        </th>
+        </th>      
         <th></th>
     </tr>
 
@@ -45,13 +39,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.perfil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Perfil1.tipo)
-        </td>
+        </td>   
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id_usuario }) |
             @Html.ActionLink("Details", "Details", new { id=item.id_usuario }) |

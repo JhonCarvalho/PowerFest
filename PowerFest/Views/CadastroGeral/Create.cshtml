@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Usuario.id_perfil, "Perfil", htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.dropPerfil, (IEnumerable<SelectListItem>)ViewBag.dropPerfil , new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.DropDownListFor(model => model.id_perfil, (IEnumerable<SelectListItem>)ViewBag.dropPerfil , new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Usuario.id_perfil, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -109,6 +109,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
+                                        <button type="button" class="btn btn-primary">Continuar <span class="glyphicon glyphicon-arrow-right"></span></button>
                                         <button type="submit" class="btn btn-primary">Finalizar  <span class="glyphicon glyphicon-ok"></span></button>
                                     </div>
                                 </div>
@@ -187,7 +188,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">                                        
+                                    <div class="col-md-offset-2 col-md-10">     
+                                        <button type="submit" class="btn btn-primary">Finalizar  <span class="glyphicon glyphicon-ok"></span></button>
+
                                         <button type="button" class="btn btn-primary">Continuar <span class="glyphicon glyphicon-arrow-right"></span></button>
                                     </div>
                                 </div>

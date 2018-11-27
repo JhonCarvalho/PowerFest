@@ -11,8 +11,10 @@ namespace PowerFest
         public Usuario Usuario { get; set; }
         public contato contato { get; set; }
         public Empresa empresa { get; set; }
-        public dropPerfil dropPerfil  { get; set; }
 
+        public string selectedPerfil { get; set; }
+        public IEnumerable<dropPerfil> dropPerfil  { get; set; }
+        public int id_perfil { get; set; }
     }
 
     public partial class dropPerfil

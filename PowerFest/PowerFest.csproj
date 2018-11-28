@@ -209,6 +209,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\w3.css" />
     <Content Include="Dados.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Dados.edmx</DependentUpon>
@@ -235,6 +237,7 @@
     <Content Include="Dados.edmx.diagram">
       <DependentUpon>Dados.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\servico_css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -294,6 +297,7 @@
     <Content Include="Views\arquivos\Details.cshtml" />
     <Content Include="Views\arquivos\Edit.cshtml" />
     <Content Include="Views\arquivos\Index.cshtml" />
+    <Content Include="Views\Shared\_ServicoLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

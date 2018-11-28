@@ -50,7 +50,7 @@ namespace PowerFest.Controllers
         {
             try
             {
-                var images = viewModelServico.images;
+               /* var images = viewModelServico.images;
 
                 if (images.Length > 0)
                 {
@@ -60,7 +60,7 @@ namespace PowerFest.Controllers
                         img.SaveAs(folder);
                     }
 
-                }
+                }*/
 
                 // TODO: Add insert logic here
 

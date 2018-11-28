@@ -17,7 +17,10 @@ namespace PowerFest
 
         [Required(ErrorMessage = "Porfavor selecione a imagem.")]
         [Display(Name = "Imagens do seu serviço")]
-        public HttpPostedFileBase[] images { get; set; }
+        public HttpPostedFileBase images_1 { get; set; }
+        public HttpPostedFileBase images_2 { get; set; }
+        public HttpPostedFileBase images_3 { get; set; }
+        public HttpPostedFileBase images_4 { get; set; }
 
         public IEnumerable<dropPerfil> dropCategoria { get; set; }
         public int id_categoria { get; set; }

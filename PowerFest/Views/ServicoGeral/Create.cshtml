@@ -58,15 +58,16 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.images_1, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <img id="Tela_1" Name="Tela_1"  class="w3-hover-opacity port"><br/>
-                        @Html.TextBoxFor(model => model.images_1, "", new { @type = "file" })
-                        @Html.ValidationMessageFor(model => model.images_1, "", new { @class = "text-danger" })
+                        <input type="file" id="images_1" name="images_1" class="hidden_btn_file" />
+                        <label id="upload_btn" for="images_1">
+                            <img id="Tela_1" Name="Tela_1" src="~/images/Item_sem_imagem.svg.png" class="w3-hover-opacity port">
+                        </label><br />
 
                     </div>
                     
                 </div>
                 <div class="w3-container w3-white">
-                    <input type="text" class="form-group" placeholder="descrição da imagem ..." />
+                    <input type="text" class="form-group" width="100%" placeholder="descrição da imagem ..." />
                 </div>
             </div>
 
@@ -74,11 +75,14 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.images_2, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <img id="Tela_2" Name="Tela_2"  class="w3-hover-opacity port"><br />
-                        @Html.TextBoxFor(model => model.images_2, "", new { @type = "file" })
-                        @Html.ValidationMessageFor(model => model.images_2, "", new { @class = "text-danger" })
+                        <input type="file" id="images_2" name="images_2" class="hidden_btn_file" />
+                        <label id="upload_btn" for="images_2">
+                            <img id="Tela_2" Name="Tela_2" src="~/images/Item_sem_imagem.svg.png" class="w3-hover-opacity port">
+                        </label><br />
+
                     </div>
                 </div>
+                
                 <div class="w3-container w3-white">
                     <input type="text" class="form-group" placeholder="descrição da imagem ..." />
                 </div>
@@ -88,10 +92,11 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.images_3, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <img id="Tela_3" Name="Tela_3"  class="w3-hover-opacity port"><br />
-                        @Html.TextBoxFor(model => model.images_3, "", new { @type = "file" })
-                        @Html.ValidationMessageFor(model => model.images_3, "", new { @class = "text-danger" })
-                    </div>
+                        <input type="file" id="images_3" name="images_3" class="hidden_btn_file" />
+                        <label id="upload_btn" for="images_3">
+                        <img id="Tela_3" Name="Tela_3" src="~/images/Item_sem_imagem.svg.png" class="w3-hover-opacity port"></label><br />
+  
+</div>
                 </div>
                 <div class="w3-container w3-white">
                     <input type="text" class="form-group" placeholder="descrição da imagem ..." />
